@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class HealthTextBar : MonoBehaviour
+public class TextHealthBar : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textMeshPro;
     [SerializeField] private Health _health;
@@ -12,9 +12,8 @@ public class HealthTextBar : MonoBehaviour
 
     private void Awake()
     {
-        _maxValue = _health.MaxHealth;
+        _maxValue = _health.Max;
         _value = _health.Count;
-
         PrintHealthValues(_maxValue, _value);
     }
 

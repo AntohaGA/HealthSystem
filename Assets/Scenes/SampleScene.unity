@@ -492,6 +492,7 @@ GameObject:
   - component: {fileID: 282504882}
   - component: {fileID: 282504881}
   - component: {fileID: 282504880}
+  - component: {fileID: 282504883}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -562,7 +563,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 282504881}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 282504883}
+        m_TargetAssemblyTypeName: ButtonSimulateHit, Assembly-CSharp
+        m_MethodName: MakeHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &282504881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +614,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282504878}
   m_CullTransparentMesh: 1
+--- !u!114 &282504883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282504878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6707ad82d7ee943ab9c721b79e4e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 1430392923}
+  _damage: 15
 --- !u!1 &341955987
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,6 +674,7 @@ GameObject:
   m_Component:
   - component: {fileID: 383962428}
   - component: {fileID: 383962429}
+  - component: {fileID: 383962430}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -720,13 +748,27 @@ MonoBehaviour:
   m_FillRect: {fileID: 1451333045}
   m_HandleRect: {fileID: 19590591}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: 5
+  m_MaxValue: 10
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &383962430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383962427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9268270ad434334fba73b72f2b15cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 383962429}
+  _health: {fileID: 1430392923}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,6 +1302,7 @@ GameObject:
   - component: {fileID: 1284822631}
   - component: {fileID: 1284822633}
   - component: {fileID: 1284822632}
+  - component: {fileID: 1284822634}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1385,6 +1428,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284822630}
   m_CullTransparentMesh: 1
+--- !u!114 &1284822634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284822630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72248679f0757d944940560506a562af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textMeshPro: {fileID: 1284822632}
+  _health: {fileID: 1430392923}
+  _splitter: ' - '
+--- !u!1 &1430392921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1430392922}
+  - component: {fileID: 1430392923}
+  m_Layer: 5
+  m_Name: ForHealthPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1430392922
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430392921}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105599024}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1430392923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430392921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d429fc48dab4b614c8af7f06ddc8522d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1451333044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,6 +1840,7 @@ GameObject:
   - component: {fileID: 2056319253}
   - component: {fileID: 2056319252}
   - component: {fileID: 2056319251}
+  - component: {fileID: 2056319254}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1804,7 +1911,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2056319252}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2056319254}
+        m_TargetAssemblyTypeName: ButtonSimulateAidkit, Assembly-CSharp
+        m_MethodName: TakeAidkit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2056319252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1843,6 +1962,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056319249}
   m_CullTransparentMesh: 1
+--- !u!114 &2056319254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056319249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 106c578a8323c7b41bee2baae7742e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 1430392923}
+  _aidCount: 12
 --- !u!1 &2105599020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1938,6 +2071,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2112343261}
+  - {fileID: 1430392922}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

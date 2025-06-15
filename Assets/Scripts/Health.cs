@@ -3,45 +3,41 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, IDamagable
 {
+    private const float StartHealth = 100;
+
     public event Action<float> TakedHit;
     public event Action<float> TakedAidKit;
 
-    public float MaxHealth { get; private set; } = 100;
-    public float MinHealth { get; private set; } = 0;
-    public float Count { get; private set; }
+    public float Max { get; private set; } = StartHealth;
+    public float Min { get; private set; } = 0;
+    public float Count { get; private set; } = StartHealth;
 
     private void Awake()
     {
-        Count = MaxHealth;
+        Count = Max;
     }
 
     public void TakeDamage(float damage)
     {
-        if (Count > 0 && damage > 0)
+        if (Count > Min && damage > 0)
         {
-            if(Count - damage >= MinHealth)
-            {
+            if (Count - damage >= Min)
                 Count -= damage;
-                TakedHit?.Invoke(Count);
-            }
             else
-            {
-                Count = MinHealth;
-                TakedHit?.Invoke(Count);
-            }
+                Count = Min;
+
+            TakedHit?.Invoke(Count);
         }
     }
 
     public void Add(float countHealth)
     {
-        if (countHealth > 0)
+        if (Count < Max && countHealth > 0)
         {
-            Count += countHealth;
-
-            if (Count > MaxHealth )
-            {
-                Count = MaxHealth;
-            }
+            if (Count + countHealth <= Max)
+                Count += countHealth;
+            else
+                Count = Max;
 
             TakedAidKit?.Invoke(Count);
         }
