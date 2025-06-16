@@ -1,41 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SliderHealthBar : MonoBehaviour
+public class SliderHealthBar : HealthBar
 {
-    [SerializeField] private Slider _slider;
-    [SerializeField] private Health _health;
-
-    private float _value;
+    [SerializeField] protected Slider _slider;
 
     private void Awake()
     {
         _slider.interactable = false;
-        _value = _health.Count;
-        _slider.minValue = _health.Min;
-        _slider.maxValue = _health.Max;
-        ApplyNewHealth(_value);
+        _slider.minValue = 0;
+        _slider.maxValue = 1;
+        ChangeValue(_health.Count, 1);
     }
 
-    private void OnEnable()
+    public override void ChangeValue(float value, float maxValue)
     {
-        _health.TakedHit += ChangeValue;
-        _health.TakedAidKit += ChangeValue;
+        ApplyNewHealth(value, maxValue);
     }
 
-    private void OnDisable()
+    private void ApplyNewHealth(float value, float maxValue)
     {
-        _health.TakedHit -= ChangeValue;
-        _health.TakedAidKit -= ChangeValue;
-    }
-
-    public void ChangeValue(float value)
-    {
-        ApplyNewHealth(value);
-    }
-
-    private void ApplyNewHealth(float value)
-    {
-        _slider.value = value;
+        _slider.value = value / maxValue;
     }
 }

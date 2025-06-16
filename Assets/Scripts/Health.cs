@@ -5,11 +5,12 @@ public class Health : MonoBehaviour, IDamagable
 {
     private const float StartHealth = 100;
 
-    public event Action<float> TakedHit;
-    public event Action<float> TakedAidKit;
+    private float Min = 0;
+
+    public event Action<float, float> Losted;
+    public event Action<float, float> Restored;
 
     public float Max { get; private set; } = StartHealth;
-    public float Min { get; private set; } = 0;
     public float Count { get; private set; } = StartHealth;
 
     private void Awake()
@@ -21,12 +22,8 @@ public class Health : MonoBehaviour, IDamagable
     {
         if (Count > Min && damage > 0)
         {
-            if (Count - damage >= Min)
-                Count -= damage;
-            else
-                Count = Min;
-
-            TakedHit?.Invoke(Count);
+            Count = Mathf.Clamp(Count - damage, Min, Max);
+            Losted?.Invoke(Count, Max);
         }
     }
 
@@ -34,12 +31,8 @@ public class Health : MonoBehaviour, IDamagable
     {
         if (Count < Max && countHealth > 0)
         {
-            if (Count + countHealth <= Max)
-                Count += countHealth;
-            else
-                Count = Max;
-
-            TakedAidKit?.Invoke(Count);
+            Count = Mathf.Clamp(Count + countHealth, Min, Max);
+            Restored?.Invoke(Count, Max);
         }
     }
 }

@@ -1,49 +1,29 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class SliderSlowHealthBar : MonoBehaviour
+public class SliderSlowHealthBar : SliderHealthBar
 {
     [SerializeField] private float _speed;
-    [SerializeField] private Slider _slider;
-    [SerializeField] private Health _health;
 
-    private IEnumerator _slowChangeCoroutine;
+    private Coroutine _slowChangeCoroutine;
 
-    private void Awake()
+    public override void ChangeValue(float newValue, float maxValue)
     {
-        _slider.interactable = false;
-        _slider.minValue = _health.Min;
-        _slider.maxValue = _health.Max;
-        _slider.value = _health.Count;
-    }
-
-    private void OnEnable()
-    {
-        _health.TakedHit += ChangeValue;
-        _health.TakedAidKit += ChangeValue;
-    }
-
-    private void OnDisable()
-    {
-        _health.TakedHit -= ChangeValue;
-        _health.TakedAidKit -= ChangeValue;
-    }
-
-    public void ChangeValue(float newValue)
-    {
-        if(_slowChangeCoroutine != null)
+        if (_slowChangeCoroutine != null)
             StopCoroutine(_slowChangeCoroutine);
 
-        _slowChangeCoroutine = ChangeHealthValue(newValue);
-        StartCoroutine(_slowChangeCoroutine);
+        _slowChangeCoroutine = StartCoroutine(ChangeHealthValue(newValue, maxValue));
     }
 
-    private IEnumerator ChangeHealthValue(float targetValue)
+    private IEnumerator ChangeHealthValue(float targetValue, float maxValue)
     {
-        while (_slider.value != targetValue)
+        float startValue = _slider.value;
+        float time = 0;
+
+        while (time < 1)
         {
-            _slider.value = Mathf.MoveTowards(_slider.value, targetValue, _speed * Time.deltaTime);
+            time += _speed * Time.deltaTime;
+            _slider.value = Mathf.Lerp(startValue, targetValue/maxValue, time);
 
             yield return null;
         }
