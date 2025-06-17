@@ -8,10 +8,10 @@ public class TextHealthBar : HealthBar
 
     private void Awake()
     {
-        PrintHealthValues(_health.Count, _health.Max);
+        PrintHealthValues(Health.Count, Health.Max);
     }
 
-    public override void ChangeValue(float newValue, float maxValue)
+    public override void OnChanged(float newValue, float maxValue)
     {
         PrintHealthValues(newValue, maxValue);
     }

@@ -5,7 +5,7 @@ public class Health : MonoBehaviour, IDamagable
 {
     private const float StartHealth = 100;
 
-    private float Min = 0;
+    private float _min = 0;
 
     public event Action<float, float> Changed;
 
@@ -19,9 +19,9 @@ public class Health : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
-        if (Count > Min && damage > 0)
+        if (Count > _min && damage > 0)
         {
-            Count = Mathf.Clamp(Count - damage, Min, Max);
+            Count = Mathf.Clamp(Count - damage, _min, Max);
             Changed?.Invoke(Count, Max);
         }
     }
@@ -30,7 +30,7 @@ public class Health : MonoBehaviour, IDamagable
     {
         if (Count < Max && countHealth > 0)
         {
-            Count = Mathf.Clamp(Count + countHealth, Min, Max);
+            Count = Mathf.Clamp(Count + countHealth, _min, Max);
             Changed?.Invoke(Count, Max);
         }
     }

@@ -7,23 +7,25 @@ public class SliderSlowHealthBar : SliderHealthBar
 
     private Coroutine _slowChangeCoroutine;
 
-    public override void ChangeValue(float newValue, float maxValue)
+    public override void OnChanged(float newValue, float maxValue)
     {
         if (_slowChangeCoroutine != null)
             StopCoroutine(_slowChangeCoroutine);
 
-        _slowChangeCoroutine = StartCoroutine(ChangeHealthValue(newValue, maxValue));
+        _slowChangeCoroutine = StartCoroutine(SlowChangeValue(newValue, maxValue));
     }
 
-    private IEnumerator ChangeHealthValue(float targetValue, float maxValue)
+    private IEnumerator SlowChangeValue(float targetValue, float maxValue)
     {
-        float startValue = _slider.value;
+        const float TargetTime = 1;
+
+        float startValue = Slider.value;
         float time = 0;
 
-        while (time < 1)
+        while (time < TargetTime)
         {
             time += _speed * Time.deltaTime;
-            _slider.value = Mathf.Lerp(startValue, targetValue/maxValue, time);
+            Slider.value = Mathf.Lerp(startValue, targetValue/maxValue, time);
 
             yield return null;
         }
