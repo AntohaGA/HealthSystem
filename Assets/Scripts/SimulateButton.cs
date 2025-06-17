@@ -8,13 +8,13 @@ public abstract class SimulateButton : MonoBehaviour
 
     protected void OnEnable()
     {
-        _button.onClick.AddListener(SimulateSomething);
+        _button.onClick.AddListener(SimulateChangeValue);
     }
 
     protected void OnDisable()
     {
-        _button.onClick.RemoveListener(SimulateSomething);
+        _button.onClick.RemoveListener(SimulateChangeValue);
     }
 
-    public abstract void SimulateSomething();
+    protected abstract void SimulateChangeValue();
 }

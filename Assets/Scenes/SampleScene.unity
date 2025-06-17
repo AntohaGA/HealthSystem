@@ -563,19 +563,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 282504881}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 282504883}
-        m_TargetAssemblyTypeName: ButtonSimulateHit, Assembly-CSharp
-        m_MethodName: MakeHit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &282504881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,6 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6707ad82d7ee943ab9c721b79e4e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _button: {fileID: 282504880}
   _health: {fileID: 1430392923}
   _damage: 15
 --- !u!1 &341955987
@@ -1305,8 +1294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 1430392923}
-  _speed: 3
   _slider: {fileID: 934765517}
+  _speed: 3
 --- !u!1 &1284822630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,8 +1979,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106c578a8323c7b41bee2baae7742e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _button: {fileID: 2056319251}
   _health: {fileID: 1430392923}
-  _aidCount: 12
+  _aidCount: 25
 --- !u!1 &2105599020
 GameObject:
   m_ObjectHideFlags: 0

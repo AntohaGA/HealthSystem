@@ -7,8 +7,7 @@ public class Health : MonoBehaviour, IDamagable
 
     private float Min = 0;
 
-    public event Action<float, float> Losted;
-    public event Action<float, float> Restored;
+    public event Action<float, float> Changed;
 
     public float Max { get; private set; } = StartHealth;
     public float Count { get; private set; } = StartHealth;
@@ -23,7 +22,7 @@ public class Health : MonoBehaviour, IDamagable
         if (Count > Min && damage > 0)
         {
             Count = Mathf.Clamp(Count - damage, Min, Max);
-            Losted?.Invoke(Count, Max);
+            Changed?.Invoke(Count, Max);
         }
     }
 
@@ -32,7 +31,7 @@ public class Health : MonoBehaviour, IDamagable
         if (Count < Max && countHealth > 0)
         {
             Count = Mathf.Clamp(Count + countHealth, Min, Max);
-            Restored?.Invoke(Count, Max);
+            Changed?.Invoke(Count, Max);
         }
     }
 }
